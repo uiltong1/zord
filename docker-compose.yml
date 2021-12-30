@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+  backend:
+    build:
+      context: .docker/php
+      dockerfile: Dockerfile
+    image: zord-api
+    container_name: zord-api
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./zord-api/:/var/www/html
+    ports:
+      - 8080:80
+    env_file:
+      - ./zord-api/.env.example
+    depends_on:
+      - db
+    networks:
+      - zord
+
+  frontend:
+    build:
+      context: .
+      dockerfile: .docker/vue/Dockerfile
+    image: zord-app
+    container_name: zord-app
+    volumes:
+      - ./zord-app/:/app
+      - /app/node_modules
+    ports:
+      - 8001:8080
+    networks:
+      - zord
+
+  db:
+    image: mysql:5.7
+    container_name: zord-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: zord_db
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_USER: zord
+    networks:
+      - zord
+
+networks:
+  zord:
+    driver: bridge

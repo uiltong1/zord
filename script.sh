@@ -1,5 +1,11 @@
 #!/bin/sh
-cd .. /
+
+# CLONE PROJECTS
+cd zord-api/
+git clone https://github.com/uiltong1/zord-api .
+
+cd ../zord-app/
+git clone https://github.com/uiltong1/zord-app .
 
 # INITIALIZE CONTEINERS 
 docker-compose up -d --build && 

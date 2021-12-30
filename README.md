@@ -4,6 +4,10 @@ Aplicação para Gestão de Desenvolvedores.
 
 https://zord-app.herokuapp.com/
 
+Repositório API: https://github.com/uiltong1/zord-api
+
+Repositório Front-end: https://github.com/uiltong1/zord-app
+
 # Inicialização
 
 Para executar a aplicação Dockerizada execute o script de inicialização através do comando abaixo:
